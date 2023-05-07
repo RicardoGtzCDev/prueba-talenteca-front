@@ -45,7 +45,7 @@
         },
         "@schematics/angular:service": {
           "skipTests": true,
-          "path": "src/app/core/services"
+          "path": "src/app"
         }
       },
       "root": "",
@@ -65,6 +65,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -109,7 +110,8 @@
               "browserTarget": "front:build:production"
             },
             "development": {
-              "browserTarget": "front:build:development"
+              "browserTarget": "front:build:development",
+              "proxyConfig": "proxy/proxy.dev.conf.js"
             }
           },
           "defaultConfiguration": "development"

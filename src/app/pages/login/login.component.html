@@ -1,0 +1,19 @@
+<div *ngIf="loading"
+    class="w-full min-h-[100vh] flex flex-wrap place-content-center bg-indigo-600 bg-opacity-10 fixed top-0 left-0 z-50">
+    <mat-spinner></mat-spinner>
+</div>
+<div class="w-full h-screen flex flex-wrap bg-white">
+    <div class="hidden md:block basis-0 md:basis-1/2 h-screen bg-login bg-no-repeat bg-center bg-cover"></div>
+    <div class="basis-full md:basis-1/2 flex flex-wrap content-start justify-center px-8 py-20 gap-y-8 sm:gap-y-4">
+        <div class="basis-1/2 md:basis-full">
+            <app-login-banner></app-login-banner>
+        </div>
+        <div class="hidden md:block basis-0 md:basis-full p-4">
+            <app-x-divider></app-x-divider>
+        </div>
+        <div class="basis-1/2 md:basis-full">
+            <app-login-form (login)="onLogin($event)"></app-login-form>
+        </div>
+    </div>
+</div>
+<app-alert></app-alert>
