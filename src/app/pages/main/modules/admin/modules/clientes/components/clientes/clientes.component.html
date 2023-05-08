@@ -1,1 +1,38 @@
-<p>clientes works!</p>
+<div class="w-full min-h-screen bg-slate-300 p-10">
+    <div class="flex flex-wrap place-content-center">
+        <div class="basis-full h-18 bg-slate-800 text-white text-xl place-content-center p-4">
+            <span class="text-4xl">Clientes</span>
+        </div>
+        <div class="basis-full flex flex-wrap">
+            <div class="basis-1/2 text-2xl p-4">
+                Lista de Clientes
+            </div>
+            <div class="basis-1/2 text-xl p-4 text-center">
+                <button class="hover:cursor-pointer rounded-lg shadow-md bg-green-300 p-2" (click)="gotToClient(0)">
+                    <span>Nuevo Cliente</span>
+                    <mat-icon fontIcon="add" class=" pl-1 pt-1"></mat-icon>
+                </button>
+                <button class="hover:cursor-pointer rounded-lg shadow-md bg-blue-500 p-2 ml-2" (click)="goToMenu()">
+                    <span>Volver al Menú</span>
+                </button>
+            </div>
+        </div>
+        <div class="basis-full bg-white rounded-[5px]">
+            <div *ngFor="let c of clientes; let i = index"
+                class=" flex flex-wrap content-center justify-start p-4 pb-2 text-lg">
+                <span class="basis-full sm:basis-1/2">{{c.nombre}} {{c.apellidoPaterno}} {{c.apellidoMaterno}}</span>
+                <span class="basis-full sm:basis-1/2">Email: {{c.email}}</span>
+                <span class="basis-full sm:basis-8/12">Direccion: {{c.direccion}}</span>
+                <span class="basis-full sm:basis-4/12">
+                    <mat-icon class="hover: cursor-pointer m-2" (click)="gotToClient(c.id)" fontIcon="edit"></mat-icon>
+                    <mat-icon class="hover: cursor-pointer m-2" (click)="eliminarClientePorId(c.id)"
+                        fontIcon="delete"></mat-icon>
+                </span>
+                <div *ngIf="i < clientes.length - 1" class="basis-full">
+                    <app-x-divider></app-x-divider>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-alert></app-alert>

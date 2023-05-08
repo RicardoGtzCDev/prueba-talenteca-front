@@ -1,1 +1,51 @@
-<p>crud-articulo works!</p>
+<div class="w-full min-h-screen bg-slate-300 p-10">
+    <div class="basis-full h-18 bg-slate-800 text-white text-xl place-content-center p-4">
+        <span *ngIf="urlArtId === 0" class="text-4xl">Nuevo Cliente</span>
+        <span *ngIf="urlArtId !== 0" class="text-4xl">Editar Cliente</span>
+    </div>
+    <div class="basis-full flex flex-wrap place-content-around bg-white p-4 rounded-[5px]">
+        <form [formGroup]="articuloForm" class="basis-full flex flex-wrap place-content-around">
+            <mat-form-field class="basis-full">
+                <mat-label class="text-green-700">Código</mat-label>
+                <input class="!text-xl" matInput formControlName="codigo">
+            </mat-form-field>
+            <mat-form-field class="basis-full">
+                <mat-label class="text-green-700">Descripción</mat-label>
+                <input class="!text-xl" matInput formControlName="descripcion">
+            </mat-form-field>
+            <mat-form-field class="basis-full">
+                <mat-label class="text-green-700">Precio</mat-label>
+                <input class="!text-xl" matInput formControlName="precio">
+            </mat-form-field>
+            <mat-form-field class="basis-full">
+                <mat-label class="text-green-700">Imagen</mat-label>
+                <input class="!text-xl" matInput formControlName="imagen">
+            </mat-form-field>
+            <mat-form-field class="basis-full">
+                <mat-label class="text-green-700">Stock</mat-label>
+                <input class="!text-xl" matInput formControlName="stock">
+            </mat-form-field>
+        </form>
+        <div class="flex flex-wrap place-content-center gap-2">
+            <button *ngIf="urlArtId === 0 && articuloForm.valid"
+                class="hover:cursor-pointer rounded-lg shadow-md bg-green-300 p-2" (click)="crearArticulo()">
+                <span>Crear Artículo</span>
+                <mat-icon fontIcon="add" class=" pl-1 pt-1"></mat-icon>
+            </button>
+            <button *ngIf="urlArtId !== 0 && articuloForm.valid"
+                class="hover:cursor-pointer rounded-lg shadow-md bg-green-300 p-2" (click)="actualizarArticulo()">
+                <span>Actualizar Artículo</span>
+                <mat-icon fontIcon="add" class=" pl-1 pt-1"></mat-icon>
+            </button>
+            <button *ngIf="urlArtId !== 0" class="hover:cursor-pointer rounded-lg shadow-md bg-red-300 p-2"
+                (click)="eliminarArticulo()">
+                <span>Eliminar Artículo</span>
+                <mat-icon fontIcon="delete" class=" pl-1 pt-1"></mat-icon>
+            </button>
+            <button class="hover:cursor-pointer rounded-lg shadow-md bg-blue-500 p-2" (click)="cancelar()">
+                <span>Cancelar</span>
+            </button>
+        </div>
+    </div>
+</div>
+<app-alert></app-alert>

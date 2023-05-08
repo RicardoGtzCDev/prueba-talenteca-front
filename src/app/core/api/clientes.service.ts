@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { BASE_BACKEND_URL } from 'src/app/core/constants';
 import { ICliente } from 'src/app/shared/models/api/clientes/cliente';
-import { ICrearClient } from 'src/app/shared/models/api/clientes/crear-cliente';
+import { ICrearCliente } from 'src/app/shared/models/api/clientes/crear-cliente';
 
 @Injectable({
   providedIn: 'root'
@@ -28,8 +28,8 @@ export class ClientesService {
     });
   }
 
-  crearCliente = (input: ICrearClient) => {
-    return this.http.post(this.clientUrl, input, { headers: this.authHeader });
+  crearCliente = (input: ICrearCliente) => {
+    return this.http.post<ICliente>(this.clientUrl, input, { headers: this.authHeader });
   }
 
   obtenerClientes = () => {
@@ -40,11 +40,11 @@ export class ClientesService {
     return this.http.get<ICliente>(`${this.clientUrl}/${id}`, { headers: this.authHeader });
   }
 
-  actualizarClientePorId = (id: number, input: Partial<ICrearClient>) => {
+  actualizarClientePorId = (id: number, input: Partial<ICrearCliente>) => {
     return this.http.patch<ICliente>(`${this.clientUrl}/${id}`, input, { headers: this.authHeader });
   }
 
-  eliminarClientePoId = (id: number) => {
+  eliminarClientePorId = (id: number) => {
     return this.http.delete(`${this.clientUrl}/${id}`, { headers: this.authHeader });
   }
 

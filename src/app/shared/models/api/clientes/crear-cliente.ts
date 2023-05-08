@@ -1,4 +1,4 @@
-export interface ICrearClient {
+export interface ICrearCliente {
     email: string,
     contraseña: string,
     nombre: string,

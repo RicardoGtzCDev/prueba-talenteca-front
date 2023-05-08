@@ -1,1 +1,57 @@
-<p>crud-clientes works!</p>
+<div class="w-full min-h-screen bg-slate-300 p-10">
+    <div class="basis-full h-18 bg-slate-800 text-white text-xl place-content-center p-4">
+        <span *ngIf="urlClientId === 0" class="text-4xl">Nuevo Cliente</span>
+        <span *ngIf="urlClientId !== 0" class="text-4xl">Editar Cliente</span>
+    </div>
+    <div class="basis-full flex flex-wrap place-content-around bg-white p-4 rounded-[5px]">
+        <form [formGroup]="clienteForm" class="basis-full flex flex-wrap place-content-around">
+            <mat-form-field class="basis-full">
+                <mat-label class="text-green-700">Email</mat-label>
+                <input class="!text-xl" matInput formControlName="email">
+            </mat-form-field>
+            <mat-form-field class="basis-full">
+                <mat-label class="text-green-700">Nombre</mat-label>
+                <input class="!text-xl" matInput formControlName="nombre">
+            </mat-form-field>
+            <mat-form-field class="basis-full">
+                <mat-label class="text-green-700">Apellido Paterno</mat-label>
+                <input class="!text-xl" matInput formControlName="apellidoPaterno">
+            </mat-form-field>
+            <mat-form-field class="basis-full">
+                <mat-label class="text-green-700">Apellido Materno</mat-label>
+                <input class="!text-xl" matInput formControlName="apellidoMaterno">
+            </mat-form-field>
+            <mat-form-field class="basis-full">
+                <mat-label class="text-green-700">Dirección</mat-label>
+                <input class="!text-xl" matInput formControlName="direccion">
+            </mat-form-field>
+        </form>
+        <form *ngIf="urlClientId === 0" class="basis-full flex flex-wrap place-content-around">
+            <mat-form-field class="basis-full">
+                <mat-label class="text-green-700">Contraseña</mat-label>
+                <input class="!text-xl" matInput [formControl]="passwordForm" placeholder="Contraseña">
+            </mat-form-field>
+        </form>
+        <div class="flex flex-wrap place-content-center gap-2">
+            <button *ngIf="urlClientId === 0 && clienteForm.valid"
+                class="hover:cursor-pointer rounded-lg shadow-md bg-green-300 p-2" (click)="crearCliente()">
+                <span>Crear Cliente</span>
+                <mat-icon fontIcon="add" class=" pl-1 pt-1"></mat-icon>
+            </button>
+            <button *ngIf="urlClientId !== 0 && clienteForm.valid"
+                class="hover:cursor-pointer rounded-lg shadow-md bg-green-300 p-2" (click)="actualizarCliente()">
+                <span>Actualizar Cliente</span>
+                <mat-icon fontIcon="add" class=" pl-1 pt-1"></mat-icon>
+            </button>
+            <button *ngIf="urlClientId !== 0" class="hover:cursor-pointer rounded-lg shadow-md bg-red-300 p-2"
+                (click)="eliminarCliente()">
+                <span>Eliminar Cliente</span>
+                <mat-icon fontIcon="delete" class=" pl-1 pt-1"></mat-icon>
+            </button>
+            <button class="hover:cursor-pointer rounded-lg shadow-md bg-blue-500 p-2" (click)="cancelar()">
+                <span>Cancelar</span>
+            </button>
+        </div>
+    </div>
+</div>
+<app-alert></app-alert>
