@@ -7,6 +7,7 @@ import { MaterialModule } from 'src/app/shared/modules/material.module';
 import { LoginBannerComponent } from 'src/app/shared/components/molecules/login-banner/login-banner.component';
 import { LoginFormComponent } from 'src/app/shared/components/molecules/login-form/login-form.component';
 import { XDividerComponent } from 'src/app/shared/components/atoms/x-divider/x-divider.component';
+import { ProductComponent } from 'src/app/shared/components/organisms/product/product.component';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { XDividerComponent } from 'src/app/shared/components/atoms/x-divider/x-d
     LoginBannerComponent,
     LoginFormComponent,
     // organisms
+    ProductComponent,
   ],
   exports: [
     // atoms
@@ -35,6 +37,7 @@ import { XDividerComponent } from 'src/app/shared/components/atoms/x-divider/x-d
     LoginBannerComponent,
     LoginFormComponent,
     // organisms
+    ProductComponent,
   ],
 })
 export class ComponentsModule { }

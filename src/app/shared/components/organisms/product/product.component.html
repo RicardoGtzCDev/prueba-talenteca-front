@@ -1,0 +1,33 @@
+<div class="w-full h-full flex flex-wrap">
+    <div class="basis-full p-4">
+        <div class="flex flex-wrap place-content-center sm:place-content-start">
+            <mat-card *ngIf="articulo" class="w-[250px] !bg-blue-200 hover:shadow-xl m-2">
+                <mat-card-header class="my-2 !text-lg">
+                    <mat-card-title>
+                        <div class="w-full flex flex-wrap">
+                            <span class="basis-full text-left">Codigo: {{articulo.codigo}}</span>
+                            <span class="basis-full text-left mb-2">Precio: {{articulo.precio | currency}}</span>
+                        </div>
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                        <span class="basis-full text-left">Stock: {{articulo.stock}}</span>
+                    </mat-card-subtitle>
+                </mat-card-header>
+                <img class="w-[250px] h-[250px]" [src]="articulo.imagen" alt="">
+                <mat-card-content>
+                    <div class="w-full h-20 overflow-auto border-b-2 m-1 mb-4">
+                        <span class="w-full text-justify text-lg">{{articulo.descripcion}}</span>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions class="w-full flex flex-wrap place-content-between m-2">
+                    <button (click)="add(articulo)"
+                        class="basis 1/2 hover:cursor-pointer rounded-lg shadow-md bg-blue-500 p-2 ml-2 text-base">
+                        <span class="mb-1">Agregar al Carrito</span>
+                        <mat-icon class="pt-1 ml-2" fontIcon="shopping_cart">
+                        </mat-icon>
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>

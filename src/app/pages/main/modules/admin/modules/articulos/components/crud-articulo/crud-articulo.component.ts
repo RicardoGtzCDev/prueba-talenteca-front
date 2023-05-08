@@ -32,7 +32,6 @@ export class CrudArticuloComponent {
     private arttService: ArticulosService
   ) {
     this.urlArtId = Number(this.aRoute.snapshot.params[URL_PARAMS.id]);
-    console.log(this.urlArtId);
     if (isNaN(this.urlArtId)) {
       this.router.navigate(['../'], { relativeTo: this.aRoute });
     }

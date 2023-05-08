@@ -1,26 +1,36 @@
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TiendasService } from 'src/app/core/api/tiendas.service';
+import { AuthService } from 'src/app/core/auth/auth.service';
+import { ADMIN_ID } from 'src/app/core/constants';
 import { AlertComponent } from 'src/app/shared/components/atoms/alert/alert.component';
 import { ITienda } from 'src/app/shared/models/api/tiendas/tienda';
+import { IJwtUserInfo } from 'src/app/shared/models/jwt-user-info';
 
 @Component({
-  selector: 'app-tiendas',
-  templateUrl: './tiendas.component.html',
+  selector: 'app-select-store',
+  templateUrl: './select-store.component.html',
   styles: [
   ]
 })
-export class TiendasComponent {
+export class SelectStoreComponent {
   @ViewChild(AlertComponent) alert!: AlertComponent;
 
   tiendas: ITienda[] = [];
-  tienda!: ITienda;
 
-  constructor(
+  user: IJwtUserInfo;
+  adminId = ADMIN_ID;
+
+  constructor (
     private router: Router,
     private aRoute: ActivatedRoute,
-    private tiendaService: TiendasService
+    private authService: AuthService,
+    private tiendaService: TiendasService,
   ) {
+    this.user = this.authService.getUser();
+    this.authService.user$.subscribe({
+      next: (value) => { this.user = value; }
+    });
     this.obtenerTiendas();
   }
 
@@ -31,17 +41,7 @@ export class TiendasComponent {
     });
   }
 
-  eliminarTiendaPorId = (id: number) => {
-    this.tiendaService.eliminarTiendaPorId(id).subscribe({
-      next: () => {
-        this.obtenerTiendas();
-        this.alert.triggerSuccess('Se ha eliminado el registro')
-      },
-      error: () => { this.alert.triggerError('Algo ha salido mal') }
-    });
-  }
-
-  gotToTienda = (id: number) => {
+  goToStore = (id: number) => {
     this.router.navigate([id], { relativeTo: this.aRoute });
   }
 

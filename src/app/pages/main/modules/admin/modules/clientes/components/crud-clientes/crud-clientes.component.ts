@@ -34,7 +34,6 @@ export class CrudClientesComponent {
     private clientService: ClientesService
   ) {
     this.urlClientId = Number(this.aRoute.snapshot.params[URL_PARAMS.id]);
-    console.log(this.urlClientId);
     if (isNaN(this.urlClientId)) {
       this.router.navigate(['../'], { relativeTo: this.aRoute });
     }

@@ -4,6 +4,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 //
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
@@ -15,6 +16,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     MatCardModule,
     MatIconModule,
     MatInputModule,
+    MatCheckboxModule,
     // otros
     SweetAlert2Module.forRoot(),
   ],
@@ -24,6 +26,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     MatCardModule,
     MatIconModule,
     MatInputModule,
+    MatCheckboxModule,
     // otros
     SweetAlert2Module
   ],

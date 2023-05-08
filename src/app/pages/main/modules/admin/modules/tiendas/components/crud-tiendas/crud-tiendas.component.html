@@ -1,1 +1,69 @@
-<p>crud-tiendas works!</p>
+<div class="w-full min-h-screen bg-slate-300 p-10">
+    <div class="basis-full h-18 bg-slate-800 text-white text-xl place-content-center p-4">
+        <span *ngIf="urlTiendatId === 0" class="text-4xl">Nueva Tienda</span>
+        <span *ngIf="urlTiendatId !== 0" class="text-4xl">Editar Tienda</span>
+    </div>
+    <div class="basis-full flex flex-wrap place-content-around bg-white p-4 rounded-[5px]">
+        <form [formGroup]="tiendaForm" class="basis-full flex flex-wrap place-content-around">
+            <mat-form-field class="basis-full">
+                <mat-label class="text-green-700">Sucursal</mat-label>
+                <input class="!text-xl" matInput formControlName="sucursal">
+            </mat-form-field>
+            <mat-form-field class="basis-full">
+                <mat-label class="text-green-700">Dirección</mat-label>
+                <input class="!text-xl" matInput formControlName="direccion">
+            </mat-form-field>
+        </form>
+        <div *ngIf="mostrarTiendaArticulos && articulos.length" class="basis-full">
+            <div *ngFor="let a of articulos; let i = index"
+                class=" flex flex-wrap content-center justify-start p-4 pb-2 text-lg">
+                <span class="basis-full">
+                    <b>Codigo: </b> {{a.codigo}}
+                    <b class="ml-5">Descripción: </b> {{a.descripcion}}
+                </span>
+                <span class="basis-full">
+                    <b>Precio: </b> {{a.precio | currency}}
+                    <b class="ml-5">Stock: </b> {{a.stock}}
+                    <mat-checkbox (change)="onChangeCheck(a.id, $event.checked)" [checked]="isRelated(a.id)"
+                        class="ml-5">Disponible</mat-checkbox>
+                </span>
+
+                <span class="basis-full"></span>
+                <div *ngIf="i < articulos.length - 1" class="basis-full">
+                    <app-x-divider></app-x-divider>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-wrap place-content-center gap-2">
+            <button *ngIf="urlTiendatId === 0 && tiendaForm.valid"
+                class="hover:cursor-pointer rounded-lg shadow-md bg-green-300 p-2" (click)="crearTienda()">
+                <span>Crear Tienda</span>
+                <mat-icon fontIcon="add" class=" pl-1 pt-1"></mat-icon>
+            </button>
+            <button *ngIf="urlTiendatId !== 0 && tiendaForm.valid"
+                class="hover:cursor-pointer rounded-lg shadow-md bg-green-300 p-2" (click)="actualizarTienda()">
+                <span>Actualizar Tienda</span>
+                <mat-icon fontIcon="add" class=" pl-1 pt-1"></mat-icon>
+            </button>
+            <button *ngIf="urlTiendatId !== 0" class="hover:cursor-pointer rounded-lg shadow-md bg-red-300 p-2"
+                (click)="eliminarTienda()">
+                <span>Eliminar Tienda</span>
+                <mat-icon fontIcon="delete" class=" pl-1 pt-1"></mat-icon>
+            </button>
+            <button *ngIf="urlTiendatId !== 0 && !mostrarTiendaArticulos"
+                class="hover:cursor-pointer rounded-lg shadow-md bg-blue-500 p-2"
+                (click)="mostrarTiendaArticulos = true">
+                <span>Mostrar Articulos</span>
+            </button>
+            <button *ngIf="urlTiendatId !== 0 && mostrarTiendaArticulos"
+                class="hover:cursor-pointer rounded-lg shadow-md bg-blue-500 p-2"
+                (click)="mostrarTiendaArticulos = false">
+                <span>Ocultar Articulos</span>
+            </button>
+            <button class="hover:cursor-pointer rounded-lg shadow-md bg-blue-500 p-2" (click)="cancelar()">
+                <span>Cancelar</span>
+            </button>
+        </div>
+    </div>
+</div>
+<app-alert></app-alert>

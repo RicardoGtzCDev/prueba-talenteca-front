@@ -1,0 +1,26 @@
+<div class="w-full min-h-screen bg-slate-300">
+    <div
+        class="basis-full flex flex-wrap h-16 bg-slate-800 text-3xl text-white place-content-between content-center px-8">
+        <span class="basis 1/2">Elige tu sucursal</span>
+        <button *ngIf="user.id === adminId"
+            class="basis 1/2 hover:cursor-pointer rounded-lg shadow-md bg-blue-500 p-2 ml-2 text-base"
+            (click)="goToMenu()">
+            <span>Volver al Menú</span>
+        </button>
+    </div>
+    <div class="basis-full h-screen flex flex-wrap place-content-center">
+        <div *ngFor="let t of tiendas" class="basis-full md:basis-1/3">
+            <div class="m-4 flex flex-wrap place-content-center">
+                <mat-card class="w-[400px] hover:cursor-pointer hover:shadow-2xl" (click)="goToStore(t.id)">
+                    <mat-card-header class="my-2">
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>{{t.sucursal}}</mat-card-title>
+                        <mat-card-subtitle class="text-sm">{{t.direccion}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <div class="w-full h-[320px] bg-store bg-no-repeat bg-center bg-cover"></div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
+<app-alert></app-alert>

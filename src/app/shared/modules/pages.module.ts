@@ -16,6 +16,8 @@ import { ClientesComponent } from 'src/app/pages/main/modules/admin/modules/clie
 import { CrudClientesComponent } from 'src/app/pages/main/modules/admin/modules/clientes/components/crud-clientes/crud-clientes.component';
 import { TiendasComponent } from 'src/app/pages/main/modules/admin/modules/tiendas/components/tiendas/tiendas.component';
 import { CrudTiendasComponent } from 'src/app/pages/main/modules/admin/modules/tiendas/components/crud-tiendas/crud-tiendas.component';
+import { SelectStoreComponent } from 'src/app/pages/main/modules/store/components/select-store/select-store.component';
+import { StoreComponent } from 'src/app/pages/main/modules/store/components/store/store.component';
 
 @NgModule({
   imports: [
@@ -39,6 +41,8 @@ import { CrudTiendasComponent } from 'src/app/pages/main/modules/admin/modules/t
     CrudClientesComponent,
     TiendasComponent,
     CrudTiendasComponent,
+    SelectStoreComponent,
+    StoreComponent,
   ],
   exports: [
     LoginComponent,
@@ -51,6 +55,8 @@ import { CrudTiendasComponent } from 'src/app/pages/main/modules/admin/modules/t
     CrudClientesComponent,
     TiendasComponent,
     CrudTiendasComponent,
+    SelectStoreComponent,
+    StoreComponent,
   ],
 })
 export class PagesModule { }

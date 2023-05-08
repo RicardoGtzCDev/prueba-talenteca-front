@@ -35,8 +35,3 @@ export class MainComponent {
     this.router.navigate(['store'])
   }
 }
-
-// validar si es el usuario adm (harcodeado en algun lado)y eb caso que si,
-// aqui se van a mostrar 2 opciones entrar a la tienda a los crud de administracion
-// de lo contrario redirigir directamente a la tienda
-// en la pagina del crud igual validad que sea admin y si no redirigir

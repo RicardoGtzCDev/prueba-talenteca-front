@@ -1,0 +1,35 @@
+<div class="w-full flex flex-wrap min-h-screen bg-slate-300" *ngIf="tienda">
+    <div
+        class="basis-full flex flex-wrap h-16 bg-slate-800 text-3xl text-white place-content-between content-center px-8">
+        <span class="basis 1/2">Sucursal {{tienda.sucursal}}</span>
+        <button class="basis 1/2 hover:cursor-pointer rounded-lg shadow-md bg-blue-500 p-2 ml-2 text-base"
+            (click)="goToMenu()">
+            <span>Volver a Tiendas</span>
+        </button>
+    </div>
+    <div class="basis-60 h-[calc(100vh-64px)] overflow-auto bg-green-100 flex flex-wrap place content-start">
+        <div class="basis-full bg-white h-14 text-xl text-black font-bold text-center py-4">
+            <span>Carrito de Compra</span>
+        </div>
+        <div *ngIf="price > 0" class="basis-full">
+            <button (click)="buy()"
+                class="basis 1/2 hover:cursor-pointer rounded-lg shadow-md bg-blue-500 p-2 mx-2 text-base mt-2 pr-4">
+                <mat-icon class="pt-1 ml-2" fontIcon="attach_money">
+                </mat-icon>
+                <span class="mb-2">Comprar {{price |currency}}</span>
+            </button>
+        </div>
+        <div class="basis-full mt-2 flex flex-wrap">
+            <div *ngFor="let c of cart" class="basis-full h-20 flex flex-wrap rounded-md bg-slate-300 m-4 p-2">
+                <span class="basis-full">{{c.descripcion}}</span>
+                <span class="basis-full">{{c.precio | currency}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="basis-[calc(100%-240px)] h-[calc(100vh-64px)] overflow-auto flex flex-wrap">
+        <div *ngFor="let ta of tiendaArticulos" class="basis-auto">
+            <app-product [tiendaArticulo]="ta" (addToCart)="onAddToCart($event)"></app-product>
+        </div>
+    </div>
+</div>
+<app-alert></app-alert>

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { StoreRoutingModule } from './store-routing.module';
 
-
 @NgModule({
   declarations: [],
   imports: [

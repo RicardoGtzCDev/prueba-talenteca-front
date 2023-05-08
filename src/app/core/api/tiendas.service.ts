@@ -1,45 +1,50 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { BASE_BACKEND_URL } from 'src/app/core/constants';
-import { ICrearClient } from 'src/app/shared/models/api/clientes/crear-cliente';
-import { IJwtUserInfo } from 'src/app/shared/models/jwt-user-info';
+import { ICrearTienda } from 'src/app/shared/models/api/tiendas/crear-tienda';
+import { ITienda } from 'src/app/shared/models/api/tiendas/tienda';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TiendasService {
 
-  user: IJwtUserInfo;
-  clientUrl: string = `${BASE_BACKEND_URL}/tiendas`
+  token: string
+  tiendaUrl: string = `${BASE_BACKEND_URL}/tiendas`
+  authHeader!: HttpHeaders;
 
   constructor(
     private http: HttpClient,
     private authService: AuthService,
   ) {
-    this.user = this.authService.getUser();
-    this.authService.user$.subscribe({
-      next: (value) => {this.user = value},
+    this.token = this.authService.getToken();
+    this.authHeader = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
+    this.authService.token$.subscribe({
+      next: (value) => {
+        this.token = value;
+        this.authHeader = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
+      }
     });
   }
 
-  crearCliente = (input: ICrearClient) => {
-    return this.http.post(this.clientUrl, input);
+  crearTienda = (input: ICrearTienda) => {
+    return this.http.post<ITienda>(this.tiendaUrl, input, { headers: this.authHeader });
   }
 
-  obtenerClientes = () => {
-    return this.http.get(this.clientUrl);
+  obtenerTiendas = () => {
+    return this.http.get<ITienda[]>(this.tiendaUrl, { headers: this.authHeader });
   }
 
-  obtenerClientePorId = (id: number) => {
-    return this.http.get(`${this.clientUrl}/id`);
+  obtenerTiendaPorId = (id: number) => {
+    return this.http.get<ITienda>(`${this.tiendaUrl}/${id}`, { headers: this.authHeader });
   }
 
-  actualizarClientePorId = (id: number, input: Partial<ICrearClient>) => {
-    return this.http.patch(`${this.clientUrl}/id`, input);
+  actualizarTiendaPorId = (id: number, input: Partial<ICrearTienda>) => {
+    return this.http.patch<ITienda>(`${this.tiendaUrl}/${id}`, input, { headers: this.authHeader });
   }
 
-  eliminarClientePoId = (id: number) => {
-    return this.http.delete(`${this.clientUrl}/id`);
+  eliminarTiendaPorId = (id: number) => {
+    return this.http.delete(`${this.tiendaUrl}/${id}`, { headers: this.authHeader });
   }
 }
